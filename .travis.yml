@@ -19,6 +19,19 @@ after_success:
   - docker push jlehman2020/multi-client 
   - docker push jlehman2020/multi-nginx 
   - docker push jlehman2020/multi-server 
-  - docker push jlehman2020/multi-worker 
+  - docker push jlehman2020/multi-worker
+
+deploy:
+  provider: elasticbeanstalk
+  region: 'us-west-2'
+  app: 'multi-docker'
+  env: 'MultiDocker-env'
+  bucket_name: 'elasticbeanstalk-us-west-2-158860252843'
+  bucket_path: 'docker-multi'
+  on:
+    branch: master
+  access_key_id: $AWS_ACCESS_KEY
+  secret_access_key: $AWS_SECRET_KEY
+  
   
   
